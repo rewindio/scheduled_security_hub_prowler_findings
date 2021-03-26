@@ -2,13 +2,13 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Parameters:
   ECSClusterName:
-      Type: String
-      Description: The name of the cluster to use
+    Type: String
+    Description: The name of the cluster to use
 
   scheduleRate:
-      Type: String
-      Description: The scheduler expression can be cron or rate. This determines how often to run the task.
-      Default: rate(7 days)
+    Type: String
+    Description: The scheduler expression can be cron or rate. This determines how often to run the task.
+    Default: rate(7 days)
 
   subnets:
     Type: List<AWS::EC2::Subnet::Id>
