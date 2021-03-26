@@ -1,7 +1,5 @@
 # scheduled_security_hub_prowler_findings
 
-[build badges]
-
 - [Purpose](#purpose)
 - [Deploying to AWS](#deploying-to-aws)
   - [Requirements](#requirements)
