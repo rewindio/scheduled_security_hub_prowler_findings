@@ -6,7 +6,7 @@
 - [Deploying to AWS](#deploying-to-aws)
   - [Requirements](#requirements)
   - [Parameters](#parameters)
-  - [deployment](#deployment)
+  - [Deployment](#deployment)
 
 ## Purpose
 
