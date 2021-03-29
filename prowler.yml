@@ -14,13 +14,6 @@ Parameters:
     Type: List<AWS::EC2::Subnet::Id>
     Description: Choose which subnets the task will use
 
-  verbose:
-    Type: String
-    AllowedValues:
-      - True
-      - False
-    Description: Use this flag to show debugging logs
-
   vpcID:
     Type: AWS::EC2::VPC::Id
     Description: The name of the VPC you wish to use with the task
@@ -40,10 +33,6 @@ Metadata:
           default: "Application Configuration"
         Parameters: 
           - scheduleRate
-          - verbose
-
-Conditions:
-  verboseCondition: !Equals [!Ref verbose, True]
 
 Resources:
   ProwlerReporting:
@@ -169,11 +158,6 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: SG for Prowler
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: 443
-        ToPort: 443
-        CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: 443
