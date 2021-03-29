@@ -213,6 +213,8 @@ Resources:
               - 'sts:AssumeRole'
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+        - arn:aws:iam::aws:policy/SecurityAudit
+        - arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
       Path: /
       Policies: 
         - PolicyName: !Sub allow_access_to_security_hub_${AWS::StackName}
@@ -224,9 +226,6 @@ Resources:
                 Action:
                   - securityhub:BatchImportFindings
                   - securityhub:GetFindings
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/SecurityAudit
-        - arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
 
   ExecutionRole:
     Type: AWS::IAM::Role
