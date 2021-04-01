@@ -17,6 +17,8 @@ The following steps outline how to deploy this stack to AWS.
 ### Requirements
 
 The following requirements must be satisfied prior to deploying this stack:
+- Security Hub and Prowler integration enabled in us-east-1 (this is a must as Prowler pushes non-region specific findings to us-east-1)
+- Security Hub and Prowler integration (in Security Hub) enabled in all of the regions you want to push Prowler findings
 - An existing ECS cluster for the tasks to run in (this stack does not create an ECS cluster)
 - An existing VPC to run the ECS tasks from
 - An existing public subnet to run the ECS tasks from
