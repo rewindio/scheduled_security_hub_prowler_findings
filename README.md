@@ -31,7 +31,7 @@ The following parameters are the required parameters for deploying the **prowler
 - **VpcID** - The VPC ID to be used by the Prowler tasks
 
 The following parameter is required for deploying the **event-rules.yml** YAML template and has to be defined upon deployment:
-- **AwsRegion
+- **ProwlerTargetRegion** - The AWS region to run scheduled Prowler tasks in
 
 ### Deployment
 
@@ -80,7 +80,7 @@ aws cloudformation deploy \
         --template-file ./event-rules.yml \
         --capabilities CAPABILITY_IAM \
         --parameter-overrides \
-            AwsRegion={the intended AWS region}\
+            ProwlerTargetRegion={the intended AWS region}\
         --stack-name {the intended name for the stack (can be anything)} \
         --profile {the AWS profile to use} \
         --region {the AWS region to deploy to}
@@ -93,7 +93,7 @@ aws cloudformation deploy \
         --template-file ./event-rules.yml \
         --capabilities CAPABILITY_IAM \
         --parameter-overrides \
-            AwsRegion=us-east-1
+            ProwlerTargetRegion=us-east-1
         --stack-name ScheduledProwlerUsEast1 \
         --profile staging \
         --region us-east-1
