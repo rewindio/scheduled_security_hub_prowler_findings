@@ -1,0 +1,29 @@
+Parameters:
+  ProwlerTargetRegion:
+    Type: String
+    Description: The AWS region to run scheduled Prowler tasks in (e.g. us-east-1)
+
+Resources:
+  EventsRuleScheduledProwlerTask:
+    Type: AWS::Events::Rule
+    Properties: 
+      Description: The schedule to run a task definition
+      Name: !Sub Security_Hub_Prowler_Scheduler_${ProwlerTargetRegion}
+      ScheduleExpression: !ImportValue ProwlerScheduleRate
+      State: ENABLED
+      Targets:
+        - 
+          Id: fargate-task
+          RoleArn: !ImportValue ProwlerTaskSchedulerRoleArn
+          Arn: !ImportValue ProwlerEcsClusterArn
+          Input: !Sub '{ "containerOverrides": [{"name": "security_hub_prowler", "command": ["-M","json-asff","-q","-S","-f","${ProwlerTargetRegion}"]}]}'
+          EcsParameters: 
+            TaskCount: 1
+            TaskDefinitionArn: !ImportValue ProwlerTaskDefinitionArn
+            LaunchType: FARGATE
+            NetworkConfiguration:
+              AwsVpcConfiguration:
+                SecurityGroups: 
+                  - !ImportValue ProwlerSecurityGroup
+                Subnets: !Split [',', !ImportValue ProwlerSubnets]
+                AssignPublicIp: ENABLED
